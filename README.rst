@@ -93,16 +93,6 @@ Member has left:
   them that the member has left. (Provided by
   ``gs-group-member-leave-left.html`` in the group context.)
 
-Not a member:
-  This notification is sent to the person who tried to leave the
-  group, the email address did not match any member. Normally
-  this occurs when the person has multiple email addresses and
-  rewrite rules when receiving. The message to support that is
-  embedded in this notification is the one that is most commonly
-  seen by `OnlineGroups.net`_ support. (Provided by
-  ``gs-group-member-leave-not-a-member.html`` in the **groups**
-  context, not the group.)
-
 Resources
 =========
 
