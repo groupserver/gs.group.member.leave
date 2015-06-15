@@ -18,7 +18,7 @@
         <span tal:content="view/groupInfo/name">this group</span>
       </h2>
       <p>
-        Dear
+        Hello
         <span tal:content="adminInfo/name">Admin</span>,
       </p>
       <!-- Explain what has happened.-->
@@ -27,7 +27,7 @@
       <p>
         Just to let you know,
         <a href="#"
-           tal:attributes="href string:${view/siteInfo/name}/${userInfo/url}"
+           tal:attributes="href string:${view/siteInfo/url}/${userInfo/url}"
            tal:content="userInfo/name">Old Member</a>
         has left
         <a tal:attributes="href view/groupInfo/url"
