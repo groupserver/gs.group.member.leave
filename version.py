@@ -62,9 +62,8 @@ def get_version():
         if release:
             version_string = version
         else:
-            version_string = "%s.dev%s" % (version, datestring, globalid)
-
-    except (CommandError, ValueError, TypeError):
+            version_string = "%s.dev%s" % (version, datestring)
+    except (CommandError, ValueError, TypeError) as e:
         # --=mpj17=-- Usually because we are building out a source-egg,
         # rather than from a Hg source-directory.
         version_string = parse_version_from_package()
