@@ -51,9 +51,6 @@ class LeaveAuditEventFactory(object):
         if (code == LEAVE):
             event = LeaveEvent(context, event_id, date, userInfo,
                                instanceUserInfo, siteInfo, groupInfo)
-        elif (code == LEAVE_COMMAND):
-            event = LeaveCommand(context, event_id, date, instanceUserInfo,
-                                 groupInfo, siteInfo, instanceDatum)
         else:
             event = BasicAuditEvent(context, event_id, UNKNOWN, date,
                                     instanceUserInfo, instanceUserInfo,
@@ -117,35 +114,6 @@ class LeaveEvent(BasicAuditEvent):
                     (retval, userInfo_to_anchor(self.userInfo))
                 retval = '%s (%s)' % \
                     (retval, munge_date(self.context, self.date))
-        return retval
-
-
-@implementer(IAuditEvent)
-class LeaveCommand(BasicAuditEvent):
-    'The audit-event for an email-command comming in.'
-
-    def __init__(self, context, eventId, d, instanceUserInfo, groupInfo,
-                 siteInfo, email):
-        super(LeaveCommand, self).__init__(
-            context, eventId, LEAVE_COMMAND, d, instanceUserInfo,
-            instanceUserInfo, siteInfo, groupInfo, email, None, SUBSYSTEM)
-
-    def __unicode__(self):
-        r = 'Email-command to leave {0} ({1}) on {2} ({3}) recieved for '\
-            '{4} ({5}) <{6}>.'
-        retval = r.format(
-            self.groupInfo.name, self.groupInfo.id,
-            self.siteInfo.name, self.siteInfo.id,
-            self.instanceUserInfo.name, self.instanceUserInfo.id,
-            self.instanceDatum)
-        return retval
-
-    @property
-    def xhtml(self):
-        cssClass = 'audit-event groupserver-group-member-%s' % self.code
-        r = '<span class="{0}">Sent an email in to leave {1}</span> ({2})'
-        retval = r.format(cssClass, groupInfo_to_anchor(self.groupInfo),
-                          munge_date(self.context, self.date))
         return retval
 
 
