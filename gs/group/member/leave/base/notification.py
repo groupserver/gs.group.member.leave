@@ -15,7 +15,7 @@
 from __future__ import absolute_import, unicode_literals
 from zope.cachedescriptors.property import Lazy
 from zope.i18n import translate
-from gs.content.email.base import (GroupEmail, SiteEmail, TextMixin)
+from gs.content.email.base import (GroupEmail, TextMixin)
 from gs.group.privacy.interfaces import IGSGroupVisibility
 from . import GSMessageFactory as _
 UTF8 = 'utf-8'
