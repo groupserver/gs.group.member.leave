@@ -1,6 +1,11 @@
 Changelog
 =========
 
+5.0.1 (2015-06-25)
+------------------
+
+* Dealing with odd profiles that are but are not in a group
+
 5.0.0 (2015-06-15)
 ------------------
 

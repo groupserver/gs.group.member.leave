@@ -14,9 +14,9 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ############################################################################
-from __future__ import absolute_import
+from __future__ import absolute_import, unicode_literals
 from zope.event import notify
-from gs.group.member.base import (member_id, user_member_of_group)
+from gs.group.member.base import (member_id, user_member_of_group, get_group_userids)
 from gs.group.member.manage.utils import (removePtnCoach, removeAdmin,
                                           unmoderate)
 from gs.group.member.manage.utils import (removePostingMember,
@@ -45,12 +45,31 @@ class GroupLeaver(object):
         retval = user_member_of_group(self.userInfo, self.groupInfo)
         return retval
 
+    @property
+    def isListedAsAMember(self):
+        memberIds = get_group_userids(self.groupInfo.groupObj,
+                                      self.groupInfo)
+        retval = self.userInfo.id in memberIds
+        return retval
+
+    def clean_up(self):
+        '''Sometimes group membership can get... odd. Remove them, by hook or by crook'''
+        acl_users = self.groupInfo.groupObj.site_root().acl_users
+        usergroupName = member_id(self.groupInfo.id)
+        group = acl_users.getGroupById(usergroupName)
+        group._delUsers((self.userInfo.id,))
+
     def removeMember(self):
         retval = []
-        if not self.isMember:
+        if (not self.isMember):
+            if self.isListedAsAMember:
+                self.clean_up()
+                m = 'cleaned up odd member {0} ({1})'
+                msg = m.format(self.userInfo.name, self.userInfo.id)
+                retval.append(msg)
             return retval
-        gId = self.groupInfo.id
-        usergroupName = member_id(gId)
+
+        usergroupName = member_id(self.groupInfo.id)
         retval = self.remove_all_positions(self.groupInfo, self.userInfo)
         self.userInfo.user.del_group(usergroupName)
         groupObj = self.groupInfo.groupObj
