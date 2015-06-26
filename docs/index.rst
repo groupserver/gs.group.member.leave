@@ -1,6 +1,17 @@
 :mod:`gs.group.member.leave.base`
 =================================
 
+:Author: `Michael JasonSmith`_
+:Contact: Michael JasonSmith <mpj17@onlinegroups.net>
+:Date: 2015-06-26
+:Organization: `GroupServer.org`_
+:Copyright: This document is licensed under a
+  `Creative Commons Attribution-Share Alike 4.0 International License`_
+  by `OnlineGroups.net`_.
+
+..  _Creative Commons Attribution-Share Alike 4.0 International License:
+    http://creativecommons.org/licenses/by-sa/4.0/
+
 The :mod:`gs.group.member.leave.base` product provides the code
 deals with group members leaving GroupServer_ groups, whether
 voluntarily or as the result of an administrator's action. It
