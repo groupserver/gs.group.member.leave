@@ -82,5 +82,6 @@ setup(name=name,
           'Products.GSGroupMember',
           'Products.XWFCore',
       ],
+      extras_require={'docs': ['Sphinx'], },
       entry_points="""# -*- Entry points: -*-
       """,)
