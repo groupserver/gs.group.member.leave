@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ############################################################################
 #
-# Copyright © 2010, 2011, 2012, 2013, 2014 OnlineGroups.net and
+# Copyright © 2010, 2011, 2012, 2013, 2014, 2016 OnlineGroups.net and
 # Contributors.
 #
 # All Rights Reserved.
@@ -14,16 +14,13 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ############################################################################
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import, unicode_literals, print_function
 from zope.event import notify
-from gs.group.member.base import (member_id, user_member_of_group, get_group_userids)
-from gs.group.member.manage.utils import (removePtnCoach, removeAdmin,
-                                          unmoderate)
-from gs.group.member.manage.utils import (removePostingMember,
-                                          removeModerator)
-from Products.GSGroupMember.groupMembersInfo import GSGroupMembersInfo
-from Products.GSGroupMember.groupmembershipstatus import (
-    GSGroupMembershipStatus)
+from gs.group.member.base import (member_id, user_member_of_group, get_group_userids,
+                                  GroupMembersInfo)
+from gs.group.member.manage.utils import (removePtnCoach, removeAdmin, unmoderate)
+from gs.group.member.manage.utils import (removePostingMember, removeModerator)
+from Products.GSGroupMember.groupmembershipstatus import GSGroupMembershipStatus
 from .audit import LeaveAuditor, LEAVE
 from .event import GSLeaveGroupEvent
 
@@ -83,7 +80,7 @@ class GroupLeaver(object):
     @staticmethod
     def remove_all_positions(groupInfo, userInfo):
         retval = []
-        membersInfo = GSGroupMembersInfo(groupInfo.groupObj)
+        membersInfo = GroupMembersInfo(groupInfo.groupObj)
         status = GSGroupMembershipStatus(userInfo, membersInfo)
         if status.isPtnCoach:
             retval.append(removePtnCoach(groupInfo)[0])
@@ -95,4 +92,5 @@ class GroupLeaver(object):
             retval.append(removeModerator(groupInfo, userInfo))
         if status.isModerated:
             retval.append(unmoderate(groupInfo, userInfo))
+        # --=mpj17=-- Invited
         return retval
