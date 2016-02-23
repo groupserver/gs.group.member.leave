@@ -51,7 +51,7 @@ class LeaveFields(object):
     @Lazy
     def leaveTerm(self):
         # rejoinAdvice = GSGroupJoining(self.groupInfo.groupObj).rejoin_advice
-        title = _('option-leave', 'Leave ${groupName}', mapping={'groupName', self.groupInfo.name})
+        title = _('option-leave', 'Leave ${groupName}', mapping={'groupName': self.groupInfo.name})
         # (%s)' % (self.groupInfo.name, rejoinAdvice)
         retval = SimpleTerm('leave', 'leave', title)
         return retval
