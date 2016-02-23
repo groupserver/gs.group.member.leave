@@ -80,8 +80,8 @@ setup(name=name,
           'Products.GSAuditTrail',
           'Products.GSGroup',
           'Products.GSGroupMember',
-          'Products.XWFCore',
-      ],
+          'Products.XWFCore', ],
+      test_suite="{0}.tests.test_all".format(name),
       extras_require={'docs': ['Sphinx'], },
       entry_points="""# -*- Entry points: -*-
       """,)
