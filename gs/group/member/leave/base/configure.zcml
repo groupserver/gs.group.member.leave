@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<configure xmlns="http://namespaces.zope.org/zope"
+<configure
+  xmlns="http://namespaces.zope.org/zope"
   xmlns:browser="http://namespaces.zope.org/browser"
-  xmlns:five="http://namespaces.zope.org/five"
   i18n_domain="gs.group.member.leave.base">
 
   <!-- Note, this is the *Groups* folder, not the Group. -->
@@ -44,4 +44,8 @@
     name="gs.group.member.leave"
     permission="zope.Public" />
 
+  <!--The event-->
+  <class class=".event.GSLeaveGroupEvent">
+    <implements interface=".event.IGSLeaveGroupEvent" />
+  </class>
 </configure>

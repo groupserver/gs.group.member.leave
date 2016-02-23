@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ############################################################################
 #
-# Copyright © 2012, 2013, 2014 OnlineGroups.net and Contributors.
+# Copyright © 2012, 2013, 2014, 2016 OnlineGroups.net and Contributors.
 #
 # All Rights Reserved.
 #
@@ -13,10 +13,9 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ############################################################################
-from __future__ import absolute_import, unicode_literals
-from zope.component.interfaces import ObjectEvent
-from zope.component.interfaces import IObjectEvent
-from zope.interface import Attribute, implements
+from __future__ import absolute_import, unicode_literals, print_function
+from zope.component.interfaces import (ObjectEvent, IObjectEvent, )
+from zope.interface import Attribute
 
 
 class IGSLeaveGroupEvent(IObjectEvent):
@@ -26,8 +25,7 @@ class IGSLeaveGroupEvent(IObjectEvent):
 
 
 class GSLeaveGroupEvent(ObjectEvent):
-    implements(IGSLeaveGroupEvent)
-
+    '''The concrete-event raised when someone leaves a group'''
     def __init__(self, context, groupInfo, memberInfo):
         ObjectEvent.__init__(self, context)
         self.groupInfo = groupInfo
