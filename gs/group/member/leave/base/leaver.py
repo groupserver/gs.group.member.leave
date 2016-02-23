@@ -18,8 +18,8 @@ from __future__ import absolute_import, unicode_literals, print_function
 from zope.event import notify
 from gs.group.member.base import (member_id, user_member_of_group, get_group_userids,
                                   GroupMembersInfo)
-from gs.group.member.manage.utils import (removePtnCoach, removeAdmin, unmoderate)
-from gs.group.member.manage.utils import (removePostingMember, removeModerator)
+from gs.group.member.manage.utils import (removePtnCoach, removeAdmin, unmoderate,
+                                          removePostingMember, removeModerator)
 from Products.GSGroupMember.groupmembershipstatus import GSGroupMembershipStatus
 from .audit import LeaveAuditor, LEAVE
 from .event import GSLeaveGroupEvent
@@ -44,8 +44,7 @@ class GroupLeaver(object):
 
     @property
     def isListedAsAMember(self):
-        memberIds = get_group_userids(self.groupInfo.groupObj,
-                                      self.groupInfo)
+        memberIds = get_group_userids(self.groupInfo.groupObj, self.groupInfo)
         retval = self.userInfo.id in memberIds
         return retval
 
@@ -92,5 +91,5 @@ class GroupLeaver(object):
             retval.append(removeModerator(groupInfo, userInfo))
         if status.isModerated:
             retval.append(unmoderate(groupInfo, userInfo))
-        # --=mpj17=-- Invited
+        # --=mpj17=-- Invited?
         return retval
