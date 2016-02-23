@@ -5,10 +5,12 @@
       i18n:domain="gs.group.member.leave"
   metal:use-macro="context/@@groupserver_layout/page">
   <head>
-    <title metal:fill-slot="title">
-      <span tal:replace="string:Leave: ${view/groupInfo/name}: ${view/siteInfo/name}">
-        Change Subscription to Group Name: Site Name
-      </span>
+    <title metal:fill-slot="title" i18n:translate="leave-title">
+      Leave:
+      <span i18n:name="groupName"
+            tal:replace="view/groupInfo/name">This group</span>:
+      <span i18n:name="siteName"
+            tal:replace="view/siteInfo/name">This site</span>
     </title>
     <tal:block metal:fill-slot="metadata">
       <link rel="up" href="#"
@@ -36,13 +38,19 @@
           <strong
             tal:content="view/groupInfo/name">This group</strong></a>
       </li>
-      <li>Leave</li>
+      <li i18n:translate="leave-breadcrumb">Leave</li>
     </ul>
     <tal:block metal:fill-slot="body">
       <div tal:condition="python:not(view.groupLeaver) and not(view.status)">
-        <h1>Not a Member of <span tal:replace="view/groupInfo/name"/></h1>
-        <p>
-          You cannot leave <span tal:replace="view/groupInfo/name"/>,
+        <h1 i18n:translate="leave-non-member-t">
+        Not a member of
+        <span class="group" i18n:name="groupName"
+              tal:replace="view/groupInfo/name"/>
+        </h1>
+        <p i18n:translate="leave-non-member-desc">
+          You cannot leave
+          <span class="group" i18n:name="groupName"
+                tal:replace="view/groupInfo/name"/>,
           because you are not a member.
         </p>
       </div>
@@ -54,7 +62,7 @@
           <tal:block replace="structure provider:groupserver.FormWidgets"/>
         </tal:block>
         <input type="hidden" name="groupId" value="groupId"
-          tal:attributes="value view/groupInfo/id">
+               tal:attributes="value view/groupInfo/id" />
         <div class="buttons" tal:condition="view/availableActions">
           <tal:block repeat="action view/actions">
             <div class="formelementbutton">

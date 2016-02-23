@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ############################################################################
 #
-# Copyright © 2010, 2011, 2012, 2013, 2014 OnlineGroups.net and
+# Copyright © 2010, 2011, 2012, 2013, 2014, 2016 OnlineGroups.net and
 # Contributors.
 #
 # All Rights Reserved.
@@ -18,7 +18,8 @@ from __future__ import absolute_import, unicode_literals
 from zope.cachedescriptors.property import Lazy
 from zope.schema import Choice
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-from Products.GSGroup.joining import GSGroupJoining
+# from Products.GSGroup.joining import GSGroupJoining
+from . import GSMessageFactory as _
 
 
 class LeaveFields(object):
@@ -29,9 +30,9 @@ class LeaveFields(object):
     def fields(self):
         retval = Choice(
             __name__='changeSubscription',
-            title='Want less email?',
-            description='These options are shown to a group member wishing '
-                        'to leave the group',
+            title=_('change-h', 'Want less email?'),
+            description=_('change-desc',
+                          'These options are shown to a group member wishing to leave the group'),
             vocabulary=self.vocab,
             default='leave',
             required=False)
@@ -41,14 +42,16 @@ class LeaveFields(object):
     def vocab(self):
         retval = SimpleVocabulary([
             self.leaveTerm,
-            SimpleTerm('web', 'web', 'Read posts on the web (no email)'),
-            SimpleTerm('digest', 'digest', 'Receive a digest of topics '
-                       '(maximum one email per day)')])
+            SimpleTerm('web', 'web', _('option-web', 'Read posts on the web (no email)')),
+            SimpleTerm('digest', 'digest', _('option-digest',
+                                             'Receive a daily digest of topics (maximum of one '
+                                             'email per day)'))])
         return retval
 
     @Lazy
     def leaveTerm(self):
-        rejoinAdvice = GSGroupJoining(self.groupInfo.groupObj).rejoin_advice
-        title = 'Leave %s (%s)' % (self.groupInfo.name, rejoinAdvice)
+        # rejoinAdvice = GSGroupJoining(self.groupInfo.groupObj).rejoin_advice
+        title = _('option-leave', 'Leave ${groupName}', mapping={'groupName', self.groupInfo.name})
+        # (%s)' % (self.groupInfo.name, rejoinAdvice)
         retval = SimpleTerm('leave', 'leave', title)
         return retval

@@ -19,7 +19,6 @@ from zope.cachedescriptors.property import Lazy
 from zope.formlib import form
 from zope.formlib.form import Fields
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
-from gs.core import to_ascii
 from gs.content.form.base import radio_widget, SiteForm
 from Products.GSGroup.groupInfo import GSGroupInfo
 from Products.GSGroup.joining import GSGroupJoining
@@ -55,9 +54,9 @@ class LeaveForm(SiteForm):
 
     @Lazy
     def label(self):
-        retval = _('left', 'Left group')
+        retval = _('leave-title-left', 'Left group')
         if self.groupLeaver:
-            retval = _('changed', 'Change subscription to ${groupName}',
+            retval = _('leave-title-leave', 'Change your subscription to ${groupName}',
                        mapping={'groupName': self.groupInfo.name})
         return retval
 
@@ -69,7 +68,7 @@ class LeaveForm(SiteForm):
         self.widgets['changeSubscription']._displayItemForMissingValue =\
             False
 
-    @form.action(label=_('change', 'Change'),
+    @form.action(name='change', label=_('change', 'Change'),
                  failure='handle_change_action_failure')
     def handle_change(self, action, data):
         change = data['changeSubscription']
@@ -98,8 +97,7 @@ class LeaveForm(SiteForm):
         left = leave_group(self.groupInfo, self.loggedInUser, self.request)
         retval = success if left else failure
         self.errors = not left
-        self.request.response.setHeader(to_ascii('Content-Type'),
-                                        to_ascii('text/html'))
+        self.request.response.setHeader(b'Content-Type', b'text/html')
         return retval
 
     def setDelivery(self, change):

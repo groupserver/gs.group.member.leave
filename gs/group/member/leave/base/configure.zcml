@@ -2,7 +2,10 @@
 <configure
   xmlns="http://namespaces.zope.org/zope"
   xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
   i18n_domain="gs.group.member.leave.base">
+
+  <i18n:registerTranslations directory="locales" />
 
   <!-- Note, this is the *Groups* folder, not the Group. -->
   <browser:page

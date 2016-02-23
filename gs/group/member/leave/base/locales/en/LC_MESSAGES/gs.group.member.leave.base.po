@@ -1,0 +1,123 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2016-02-23 20:09+0000\n"
+"PO-Revision-Date: 2016-02-23 12:13-0800\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#. Default: "Change"
+#: ./leave.py:71
+msgid "change"
+msgstr "Change"
+
+#. Default: "These options are shown to a group member wishing to leave the group"
+#: ./fields.py:34
+msgid "change-desc"
+msgstr "These options are shown to a group member wishing to leave the group"
+
+#. Default: "The posts from ${groupName} will now be deliveredto you in the form of a daily digest of topics."
+#: ./leave.py:111
+msgid "change-digest"
+msgstr "The posts from ${groupName} will now be delivered to you in the form of a daily digest of topics."
+
+#. Default: "Want less email?"
+#: ./fields.py:33
+msgid "change-h"
+msgstr "Want less email?"
+
+#. Default: "You will no longer receive any posts from ${groupName} via email."
+#: ./leave.py:117
+msgid "change-web-only"
+msgstr "You will no longer receive any posts from ${groupName} via email."
+
+#. Default: "Something went wrong. Please try again."
+#: ./leave.py:94
+msgid "leave-fail"
+msgstr "Something went wrong. Please try again."
+
+#. Default: "You have left ${groupName}"
+#: ./notifier.py:37
+msgid "leave-notification-subject"
+msgstr ""
+
+#. Default: "You have left ${groupName}. ${rejoin}."
+#: ./leave.py:90
+msgid "leave-success"
+msgstr "You have left ${groupName}. ${rejoin}."
+
+#. Default: "Change your subscription to ${groupName}"
+#: ./leave.py:59
+msgid "leave-title-leave"
+msgstr "Change your subscription to ${groupName}"
+
+#. Default: "Left group"
+#: ./leave.py:57
+msgid "leave-title-left"
+msgstr "Left the group"
+
+#. Default: "${userName} has left ${groupName}"
+#: ./notifier.py:63
+msgid "member-left-subject"
+msgstr "${userName} has left ${groupName}"
+
+#. Default: "Receive a daily digest of topics (maximum of one email per day)"
+#: ./fields.py:46
+msgid "option-digest"
+msgstr "Receive a daily digest of topics (maximum of one email per day)"
+
+#. Default: "Leave ${groupName}"
+#: ./fields.py:54
+msgid "option-leave"
+msgstr "Leave ${groupName}"
+
+#. Default: "Read posts on the web (no email)"
+#: ./fields.py:45
+msgid "option-web"
+msgstr "Read posts on the web (no email)"
+
+#. Default: "Hello,\n\nI left the group ${groupName} and...\n\n--\nThese links may help you:\n  Group  ${groupUrl}\n  Me     ${userUrl}\n"
+#: ./notification.py:35
+msgid "support-notification-leave-body"
+msgstr ""
+"Hello,\n"
+"\n"
+"I left the group ${groupName} and...\n"
+"\n"
+"--\n"
+"These links may help you:\n"
+"  Group  ${groupUrl}\n"
+"  Me     ${userUrl}\n"
+
+#. Default: "Left a group"
+#: ./notification.py:32
+msgid "support-notification-leave-subject"
+msgstr "Left a group"
+
+#. Default: "Hello,\n\nA member left my group, ${groupName}, and...\n\n--\nThese links may be useful:\n  Group   ${groupUrl}\n  Me      ${adminUrl}\n  Member  ${userUrl}\n"
+#: ./notification.py:76
+msgid "support-notification-member-left-body"
+msgstr ""
+"Hello,\n"
+"\n"
+"A member left my group, ${groupName}, and...\n"
+"\n"
+"--\n"
+"These links may be useful:\n"
+"  Group   ${groupUrl}\n"
+"  Me      ${adminUrl}\n"
+"  Member  ${userUrl}\n"
+
+#. Default: "A member left my group"
+#: ./notification.py:71
+msgid "support-notification-member-left-subject"
+msgstr "A member left my group"
+
