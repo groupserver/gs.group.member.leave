@@ -1,6 +1,17 @@
 Changelog
 =========
 
+5.1.0 (2016-02-24)
+------------------
+
+* Switching the opening salutation in the notifications from
+  *Dear* to *Hello*
+* Added internationalisation support
+* Following the members-info class to `gs.group.member.base`_
+
+.. _gs.group.member.base:
+   https://github.com/groupserver/gs.group.member.base
+
 5.0.1 (2015-06-25)
 ------------------
 
@@ -112,3 +123,5 @@ Changelog
 * Created new product for leaving a group
 * Moved the group-leaving-auditor from Products.GSGroupMember
 
+
+..  LocalWords:  Changelog
