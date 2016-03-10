@@ -15,8 +15,9 @@
 from __future__ import absolute_import, unicode_literals
 from unittest import TestSuite, main as unittest_main
 from gs.group.member.leave.base.tests.leaver import (TestGroupLeaver, )
+from gs.group.member.leave.base.tests.notifier import (TestLeftNotifier, )
 
-testCases = (TestGroupLeaver, )
+testCases = (TestGroupLeaver, TestLeftNotifier, )
 
 
 def load_tests(loader, tests, pattern):
