@@ -1,13 +1,15 @@
 Changelog
 =========
 
-5.1.0 (2016-02-24)
+5.1.0 (2016-04-10)
 ------------------
 
 * Switching the opening salutation in the notifications from
   *Dear* to *Hello*
 * Added internationalisation support
 * Following the members-info class to `gs.group.member.base`_
+* Handing the corner-case of someone leaving when the group
+  administrator lacks a verified email address
 
 .. _gs.group.member.base:
    https://github.com/groupserver/gs.group.member.base
