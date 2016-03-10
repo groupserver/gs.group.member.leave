@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ############################################################################
 #
-# Copyright © 2014 OnlineGroups.net and Contributors.
+# Copyright © 2014, 2016 OnlineGroups.net and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -13,11 +13,15 @@
 #
 ############################################################################
 from __future__ import unicode_literals
+from logging import getLogger
 from zope.component import getMultiAdapter
 from zope.i18n import translate
 from gs.content.email.base import GroupNotifierABC
 from gs.profile.notify import MessageSender
 from . import GSMessageFactory as _
+
+#: The logger for the warnings
+log = getLogger('gs.group.member.leave.base.notifier')
 
 
 class LeaveNotifier(GroupNotifierABC):
@@ -74,5 +78,13 @@ pre-rendered before it is sent off.'''
 
     def notify(self):
         sender = MessageSender(self.context, self.adminInfo)
-        sender.send_message(self.subject, self.text, self.html)
-        self.reset_content_type()
+        try:
+            sender.send_message(self.subject, self.text, self.html)
+        except ValueError:  # No email address for the admin
+            m = 'Cannot send a "Member has left" notification to the administrator %s (%s) for '\
+                'the group %s (%s) on %s (%s) because they lack a verified email address. '\
+                'Skipping the notification.'
+            log.warn(m, self.adminInfo.name, self.adminInfo.id, self.groupInfo.name,
+                     self.groupInfo.id, self.groupInfo.siteInfo.name, self.groupInfo.siteInfo.id)
+        else:
+            self.reset_content_type()
