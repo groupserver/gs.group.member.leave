@@ -41,7 +41,7 @@ Resources
 =========
 
 - Documentation:
-  http://groupserver.readthedocs.org/projects/gsgroupmemberleavebase/
+  http://groupserver.readthedocs.io/projects/gsgroupmemberleavebase/
 - Code repository:
   https://github.com/groupserver/gs.group.member.leave.base/
 - Questions and comments to
